@@ -3,7 +3,7 @@ syms a b;
 c = [a b]';
 
 %原始数列 A
-A = [317757 280156 183569 130838 111458 108463 91689 57809];
+A = [3496 2608 2513 2161 2071 1866 1720 1718 1530 1571 1240 1248];
 n = length(A);
 
 %对原始数列 A 做累加得到数列 B
@@ -32,7 +32,7 @@ end
 
 %对数列 F 累减还原,得到预测出的数据
 G = []; G(1) = A(1);
-for i = 2:(n+8)
+for i = 2:(n+9)
     G(i) = F(i) - F(i-1); %得到预测出来的数据
 end
 
@@ -42,7 +42,7 @@ G
 %模型检验
 
 
-H = G(1:8);
+H = G(1:12);
 %计算残差序列
 epsilon = A - H;
 
@@ -64,12 +64,12 @@ disp('小误差概率P检验：')
 P = length(tmp)/n
 
 %绘制曲线图
-t1 = [1982 1987 1992 1997 2002 2007 2012 2017];
-t2 = [1982 1987 1992 1997 2002 2007 2012 2017 2022 2027 2032 2037 2042 2047 2052 2057];
+t1 = 2006:2017;
+t2 = 2006:2026;
 
 plot(t1, A,'ro'); hold on;
 plot(t2, G, 'g*-');
-xlabel('year'); ylabel('Cultivated Land (Acres)');
+xlabel('Year'); ylabel('Nursery Area (Acres)');
 legend('Actuality','Prediction');
-title('Change curve of cultivated land area in Los Angeles');
+title('Change curve of agricultural products area in Los Angeles');
 grid on;
